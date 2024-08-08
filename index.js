@@ -51,11 +51,28 @@ function extractData(page) {
     const $ = cheerio.load(page)
     const price = $(".price").text()
     console.log("price:", price)
+    const pricesArray = price.replace(/€/gm, "").trim().split(" ")
+    console.log(pricesArray)
+    return pricesArray
 }
 
-async function main() {
+async function runScraper() {
     const page = await submitForm()
-    extractData(page)
+    return extractData(page)
 }
 
-main()
+// runScraper()
+exports.handler = async (event) => {
+    try {
+        const result = await runScraper()
+        return {
+            statusCode: 200,
+            body: JSON.stringify(result),
+        }
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message }),
+        }
+    }
+}
