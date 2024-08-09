@@ -1,6 +1,6 @@
-import fs from "fs"
-import cheerio from "cheerio"
-import fetch from "fetch"
+//const fs = require("fs")
+const cheerio = require("cheerio")
+const fetch = require("node-fetch")
 
 async function submitForm() {
     const url = "https://www.frontierassicurazioni.it/funnel/02"
@@ -28,7 +28,7 @@ async function submitForm() {
 
         if (response.ok) {
             const result = await response.text()
-            fs.writeFileSync("response.html", result, "utf8")
+            //fs.writeFileSync("response.html", result, "utf8")
 
             console.log("Form submitted successfully:", result)
             return result

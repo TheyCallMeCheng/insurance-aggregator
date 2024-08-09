@@ -12,7 +12,7 @@
     "dependencies": {
         "aws-sdk": "^2.1671.0",
         "cheerio": "^1.0.0-rc.12",
+        "node-fetch": "^2.7.0",
         "puppeteer": "^22.15.0"
-    },
-    "type": "module"
+    }
 }
